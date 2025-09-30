@@ -107,11 +107,10 @@ namespace Aufgabe20
                 int textStart = jsonData.IndexOf("\"text\":\"");
                 if (textStart == -1) return null;
 
-                textStart += 8; // Länge von "\"text\":\""
+                textStart += 8;
                 int textEnd = jsonData.IndexOf("\",", textStart);
                 if (textEnd == -1)
                 {
-                    // Falls es das letzte Element ist, suche nach "}"
                     textEnd = jsonData.IndexOf("\"}", textStart);
                     if (textEnd == -1) return null;
                 }
