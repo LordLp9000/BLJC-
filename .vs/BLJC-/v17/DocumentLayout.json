@@ -3,12 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\anton\\OneDrive\\Dokumente\\GitHub\\BLJC-\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{665F77E1-9E8B-40B8-AF19-A6781B3F2F37}|Aufgabe16\\Aufgabe16.csproj|c:\\users\\anton\\onedrive\\dokumente\\github\\bljc-\\aufgabe16\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{665F77E1-9E8B-40B8-AF19-A6781B3F2F37}|Aufgabe16\\Aufgabe16.csproj|solutionrelative:aufgabe16\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\anton\\OneDrive\\Dokumente\\GitHub\\BLJC-\\Aufgabe15\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Aufgabe15\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4B4CFB0D-B214-4EC7-822D-0BEADBBEF39F}|Aufgabe17\\Aufgabe17.csproj|c:\\users\\anton\\onedrive\\dokumente\\github\\bljc-\\aufgabe17\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4B4CFB0D-B214-4EC7-822D-0BEADBBEF39F}|Aufgabe17\\Aufgabe17.csproj|solutionrelative:aufgabe17\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -28,26 +24,13 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\anton\\OneDrive\\Dokumente\\GitHub\\BLJC-\\Aufgabe16\\Program.cs",
-              "RelativeDocumentMoniker": "Aufgabe16\\Program.cs",
-              "ToolTip": "C:\\Users\\anton\\OneDrive\\Dokumente\\GitHub\\BLJC-\\Aufgabe16\\Program.cs",
-              "RelativeToolTip": "Aufgabe16\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAFAAAAAAAAAA==",
+              "DocumentMoniker": "C:\\Users\\anton\\OneDrive\\Dokumente\\GitHub\\BLJC-\\Aufgabe17\\Program.cs",
+              "RelativeDocumentMoniker": "Aufgabe17\\Program.cs",
+              "ToolTip": "C:\\Users\\anton\\OneDrive\\Dokumente\\GitHub\\BLJC-\\Aufgabe17\\Program.cs",
+              "RelativeToolTip": "Aufgabe17\\Program.cs",
+              "ViewState": "AgIAACUAAAAAAAAAAAAawAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-30T04:49:01.147Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\anton\\OneDrive\\Dokumente\\GitHub\\BLJC-\\Aufgabe15\\Program.cs",
-              "RelativeDocumentMoniker": "Aufgabe15\\Program.cs",
-              "ToolTip": "C:\\Users\\anton\\OneDrive\\Dokumente\\GitHub\\BLJC-\\Aufgabe15\\Program.cs",
-              "RelativeToolTip": "Aufgabe15\\Program.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAAAAAAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-30T04:11:54.745Z",
+              "WhenOpened": "2025-09-30T04:52:29.043Z",
               "EditorCaption": ""
             }
           ]

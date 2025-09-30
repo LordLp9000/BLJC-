@@ -1,0 +1,7 @@
+C:\Users\anton\OneDrive\Dokumente\GitHub\BLJC-\Aufgabe17\bin\Debug\Aufgabe17.exe.config
+C:\Users\anton\OneDrive\Dokumente\GitHub\BLJC-\Aufgabe17\bin\Debug\Aufgabe17.exe
+C:\Users\anton\OneDrive\Dokumente\GitHub\BLJC-\Aufgabe17\bin\Debug\Aufgabe17.pdb
+C:\Users\anton\OneDrive\Dokumente\GitHub\BLJC-\Aufgabe17\obj\Debug\Aufgabe17.csproj.AssemblyReference.cache
+C:\Users\anton\OneDrive\Dokumente\GitHub\BLJC-\Aufgabe17\obj\Debug\Aufgabe17.csproj.CoreCompileInputs.cache
+C:\Users\anton\OneDrive\Dokumente\GitHub\BLJC-\Aufgabe17\obj\Debug\Aufgabe17.exe
+C:\Users\anton\OneDrive\Dokumente\GitHub\BLJC-\Aufgabe17\obj\Debug\Aufgabe17.pdb
