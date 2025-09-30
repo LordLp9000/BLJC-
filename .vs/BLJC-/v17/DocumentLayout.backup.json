@@ -3,8 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\anton\\OneDrive\\Dokumente\\GitHub\\BLJC-\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{0735B9B0-3495-4D6C-B007-20EA1A3B5FD0}|Memory\\Memory.csproj|c:\\users\\anton\\onedrive\\dokumente\\github\\bljc-\\memory\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0735B9B0-3495-4D6C-B007-20EA1A3B5FD0}|Memory\\Memory.csproj|solutionrelative:memory\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0EAB3F13-23DB-4CAF-A982-80F3D3CC4FF9}|Waldbrand\\Waldbrand.csproj|c:\\users\\anton\\onedrive\\dokumente\\github\\bljc-\\waldbrand\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0EAB3F13-23DB-4CAF-A982-80F3D3CC4FF9}|Waldbrand\\Waldbrand.csproj|solutionrelative:waldbrand\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\anton\\OneDrive\\Dokumente\\GitHub\\BLJC-\\Aufgabe20\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Aufgabe20\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 281,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -22,15 +26,28 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\anton\\OneDrive\\Dokumente\\GitHub\\BLJC-\\Aufgabe20\\Program.cs",
+              "RelativeDocumentMoniker": "Aufgabe20\\Program.cs",
+              "ToolTip": "C:\\Users\\anton\\OneDrive\\Dokumente\\GitHub\\BLJC-\\Aufgabe20\\Program.cs",
+              "RelativeToolTip": "Aufgabe20\\Program.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-30T05:49:54.368Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\anton\\OneDrive\\Dokumente\\GitHub\\BLJC-\\Memory\\Program.cs",
-              "RelativeDocumentMoniker": "Memory\\Program.cs",
-              "ToolTip": "C:\\Users\\anton\\OneDrive\\Dokumente\\GitHub\\BLJC-\\Memory\\Program.cs",
-              "RelativeToolTip": "Memory\\Program.cs",
-              "ViewState": "AgIAAFQAAAAAAAAAAAA7wLEAAAAAAAAAAAAAAA==",
+              "DocumentMoniker": "C:\\Users\\anton\\OneDrive\\Dokumente\\GitHub\\BLJC-\\Waldbrand\\Program.cs",
+              "RelativeDocumentMoniker": "Waldbrand\\Program.cs",
+              "ToolTip": "C:\\Users\\anton\\OneDrive\\Dokumente\\GitHub\\BLJC-\\Waldbrand\\Program.cs",
+              "RelativeToolTip": "Waldbrand\\Program.cs",
+              "ViewState": "AgIAADYAAAAAAAAAAAAAAE4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-30T05:16:25.839Z",
+              "WhenOpened": "2025-09-30T05:33:16.626Z",
               "EditorCaption": ""
             }
           ]
