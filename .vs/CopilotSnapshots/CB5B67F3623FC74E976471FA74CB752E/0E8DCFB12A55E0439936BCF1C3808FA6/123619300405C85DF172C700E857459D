@@ -29,6 +29,34 @@ namespace WaldBrand
             Console.WriteLine("Enter growth probability (0-10):");
             growthProbability = double.Parse(Console.ReadLine());
 
+            // Set console window and buffer size to accommodate the forest
+            try
+            {
+                // Ensure console can display the full forest
+                int requiredHeight = height + 5; // Extra space for UI text
+                int requiredWidth = Math.Max(width, 50); // Minimum width for UI text
+
+                // Get maximum possible console size
+                int maxWidth = Console.LargestWindowWidth;
+                int maxHeight = Console.LargestWindowHeight;
+
+                // Adjust to fit within console limits
+                int consoleWidth = Math.Min(requiredWidth, maxWidth);
+                int consoleHeight = Math.Min(requiredHeight, maxHeight);
+
+                // Set buffer size first (must be >= window size)
+                Console.SetBufferSize(consoleWidth, consoleHeight);
+                
+                // Then set window size
+                Console.SetWindowSize(consoleWidth, consoleHeight);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Warning: Could not resize console window: {ex.Message}");
+                Console.WriteLine("Press any key to continue with current console size...");
+                Console.ReadKey();
+            }
+
             forest = new char[height, width];
             fireAge = new int[height, width];
             emptyAge = new int[height, width];
@@ -77,68 +105,60 @@ namespace WaldBrand
 
         static void DisplayForest()
         {
-            int maxDisplayWidth = Math.Min(width, Console.WindowWidth);
-            int maxDisplayHeight = Math.Min(height, Console.WindowHeight - 3);
-
+            // Clear the console and ensure we start from the top
+            Console.Clear();
             Console.SetCursorPosition(0, 0);
 
-            for (int row = 0; row < maxDisplayHeight; row++)
+            for (int row = 0; row < height; row++)
             {
-                for (int col = 0; col < maxDisplayWidth; col++)
+                for (int col = 0; col < width; col++)
                 {
-                    char cell = forest[row, col];
-                    switch (cell)
+                    // Check if we're within console bounds
+                    if (col < Console.BufferWidth && row < Console.BufferHeight - 3)
                     {
-                        case 'F':
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            break;
-                        case 'f':
-                            Console.ForegroundColor = ConsoleColor.DarkRed;
-                            break;
-                        case 'B':
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            break;
-                        case 'S':
-                            Console.ForegroundColor = ConsoleColor.Gray;
-                            break;
-                        case '-':
-                            Console.ForegroundColor = ConsoleColor.White;
-                            break;
+                        char cell = forest[row, col];
+                        switch (cell)
+                        {
+                            case 'F':
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                break;
+                            case 'f':
+                                Console.ForegroundColor = ConsoleColor.DarkRed;
+                                break;
+                            case 'B':
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                break;
+                            case 'S':
+                                Console.ForegroundColor = ConsoleColor.Gray;
+                                break;
+                            case '-':
+                                Console.ForegroundColor = ConsoleColor.White;
+                                break;
+                        }
+                        Console.Write(cell);
                     }
-                    Console.Write(cell);
+                    else if (col >= Console.BufferWidth)
+                    {
+                        // If line is too long, truncate it
+                        break;
+                    }
                 }
                 Console.ResetColor();
-
-                if (maxDisplayWidth < Console.WindowWidth)
-                {
-                    Console.Write(new string(' ', Console.WindowWidth - maxDisplayWidth));
-                }
-
-                if (row < maxDisplayHeight - 1)
+                
+                // Only add newline if we're not at the last row and within buffer height
+                if (row < height - 1 && row < Console.BufferHeight - 4)
                 {
                     Console.WriteLine();
                 }
             }
 
-            for (int row = maxDisplayHeight; row < Console.WindowHeight - 3; row++)
+            // Add UI text at the bottom
+            if (Console.CursorTop < Console.BufferHeight - 3)
             {
-                Console.SetCursorPosition(0, row);
-                Console.Write(new string(' ', Console.WindowWidth));
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.Write("Press any key to quit.");
             }
-
-            Console.SetCursorPosition(0, Console.WindowHeight - 3);
-            Console.Write(new string(' ', Console.WindowWidth));
-            Console.SetCursorPosition(0, Console.WindowHeight - 3);
-
-            if (width > Console.WindowWidth || height > Console.WindowHeight - 3)
-            {
-                Console.Write($"Showing {maxDisplayWidth}x{maxDisplayHeight} of {width}x{height} forest");
-            }
-
-            Console.SetCursorPosition(0, Console.WindowHeight - 1);
-            Console.Write(new string(' ', Console.WindowWidth));
-            Console.SetCursorPosition(0, Console.WindowHeight - 1);
-            Console.Write("Press any key to quit.");
         }
 
         static void StartRandomFires()
@@ -176,48 +196,21 @@ namespace WaldBrand
                 {
                     if (forest[row, col] == 'F')
                     {
-                        List<(int, int)> neighbors = new List<(int, int)>();
                         for (int dr = -1; dr <= 1; dr++)
                         {
                             for (int dc = -1; dc <= 1; dc++)
                             {
-                                if (dr == 0 && dc == 0) continue;
-
                                 int neighborRow = row + dr;
                                 int neighborCol = col + dc;
 
                                 if (neighborRow >= 0 && neighborRow < height &&
                                     neighborCol >= 0 && neighborCol < width)
                                 {
-                                    neighbors.Add((neighborRow, neighborCol));
-                                }
-                            }
-                        }
-
-                        for (int i = neighbors.Count - 1; i > 0; i--)
-                        {
-                            int j = random.Next(i + 1);
-                            var temp = neighbors[i];
-                            neighbors[i] = neighbors[j];
-                            neighbors[j] = temp;
-                        }
-
-                        foreach (var (neighborRow, neighborCol) in neighbors)
-                        {
-                            if (forest[neighborRow, neighborCol] == 'B')
-                            {
-                                double spreadChance = 0.7;
-
-                                bool isDiagonal = Math.Abs(neighborRow - row) == 1 && Math.Abs(neighborCol - col) == 1;
-                                if (isDiagonal)
-                                {
-                                    spreadChance *= 0.6;
-                                }
-
-                                if (random.NextDouble() < spreadChance)
-                                {
-                                    newForest[neighborRow, neighborCol] = 'F';
-                                    newFireAge[neighborRow, neighborCol] = 0;
+                                    if (forest[neighborRow, neighborCol] == 'B')
+                                    {
+                                        newForest[neighborRow, neighborCol] = 'F';
+                                        newFireAge[neighborRow, neighborCol] = 0;
+                                    }
                                 }
                             }
                         }
@@ -238,10 +231,7 @@ namespace WaldBrand
                     if (forest[row, col] == 'F')
                     {
                         fireAge[row, col]++;
-
-                        int burnDuration = random.Next(2, 5);
-
-                        if (fireAge[row, col] >= burnDuration)
+                        if (fireAge[row, col] >= 2)
                         {
                             forest[row, col] = 'f';
                             emptyAge[row, col] = 0;
@@ -250,10 +240,7 @@ namespace WaldBrand
                     else if (forest[row, col] == 'f')
                     {
                         emptyAge[row, col]++;
-
-                        int clearDuration = random.Next(3, 7);
-
-                        if (emptyAge[row, col] >= clearDuration)
+                        if (emptyAge[row, col] >= 4)
                         {
                             forest[row, col] = '-';
                             emptyAge[row, col] = 0;
@@ -275,36 +262,7 @@ namespace WaldBrand
                 {
                     if (forest[row, col] == '-')
                     {
-                        int minGrowthTime = random.Next(1, 4);
-
-                        bool hasNearbyTrees = false;
-                        for (int dr = -2; dr <= 2 && !hasNearbyTrees; dr++)
-                        {
-                            for (int dc = -2; dc <= 2 && !hasNearbyTrees; dc++)
-                            {
-                                int checkRow = row + dr;
-                                int checkCol = col + dc;
-
-                                if (checkRow >= 0 && checkRow < height &&
-                                    checkCol >= 0 && checkCol < width &&
-                                    forest[checkRow, checkCol] == 'B')
-                                {
-                                    hasNearbyTrees = true;
-                                }
-                            }
-                        }
-
-                        double adjustedGrowthProb = growthProbability / 10.0;
-                        if (hasNearbyTrees)
-                        {
-                            adjustedGrowthProb *= 1.5;
-                        }
-                        else
-                        {
-                            adjustedGrowthProb *= 0.3;
-                        }
-
-                        if (emptyAge[row, col] >= minGrowthTime && random.NextDouble() < adjustedGrowthProb)
+                        if (emptyAge[row, col] >= 2 && random.NextDouble() < growthProbability / 10.0)
                         {
                             forest[row, col] = 'B';
                             emptyAge[row, col] = 0;

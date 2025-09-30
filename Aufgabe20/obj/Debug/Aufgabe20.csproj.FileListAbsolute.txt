@@ -7,3 +7,4 @@ C:\Users\anton\OneDrive\Dokumente\GitHub\BLJC-\Aufgabe20\obj\Debug\Aufgabe20.exe
 C:\Users\anton\OneDrive\Dokumente\GitHub\BLJC-\Aufgabe20\obj\Debug\Aufgabe20.pdb
 C:\Users\anton\OneDrive\Dokumente\GitHub\BLJC-\Aufgabe20\obj\Debug\Aufgabe20.exe.config
 C:\Users\anton\OneDrive\Dokumente\GitHub\BLJC-\Aufgabe20\obj\Debug\Aufgabe20.csproj.Up2Date
+C:\Users\anton\OneDrive\Dokumente\GitHub\BLJC-\Aufgabe20\bin\Debug\Newtonsoft.Json.dll

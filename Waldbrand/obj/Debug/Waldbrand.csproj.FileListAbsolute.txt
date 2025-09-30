@@ -6,3 +6,6 @@ C:\Users\anton\OneDrive\Dokumente\GitHub\BLJC-\Waldbrand\obj\Debug\Waldbrand.csp
 C:\Users\anton\OneDrive\Dokumente\GitHub\BLJC-\Waldbrand\obj\Debug\Waldbrand.exe
 C:\Users\anton\OneDrive\Dokumente\GitHub\BLJC-\Waldbrand\obj\Debug\Waldbrand.pdb
 C:\Users\anton\OneDrive\Dokumente\GitHub\BLJC-\Waldbrand\obj\Debug\Waldbrand.exe.config
+C:\Users\anton\OneDrive\Dokumente\GitHub\BLJC-\Waldbrand\bin\Debug\Newtonsoft.Json.dll
+C:\Users\anton\OneDrive\Dokumente\GitHub\BLJC-\Waldbrand\bin\Debug\Newtonsoft.Json.xml
+C:\Users\anton\OneDrive\Dokumente\GitHub\BLJC-\Waldbrand\obj\Debug\Waldbrand.csproj.Up2Date

@@ -10,8 +10,8 @@ namespace WaldBrand
     {
 
         static char[,] forest;
-        static int[,] fireAge;
-        static int[,] emptyAge;
+        static int[,] fireAge; // Track how long fires have been burning
+        static int[,] emptyAge; // Track how long spots have been empty
         static int width;
         static int height;
         static double sparkProbability;
@@ -71,73 +71,46 @@ namespace WaldBrand
                 UpdateBurntTrees();
                 GrowNewTrees();
                 DisplayForest();
-                System.Threading.Thread.Sleep(500);
+                System.Threading.Thread.Sleep(1500);
             }
         }
 
         static void DisplayForest()
         {
-            int maxDisplayWidth = Math.Min(width, Console.WindowWidth);
-            int maxDisplayHeight = Math.Min(height, Console.WindowHeight - 3);
-
             Console.SetCursorPosition(0, 0);
 
-            for (int row = 0; row < maxDisplayHeight; row++)
+            for (int row = 0; row < height; row++)
             {
-                for (int col = 0; col < maxDisplayWidth; col++)
+                for (int col = 0; col < width; col++)
                 {
+                    // Use different colors for different states
                     char cell = forest[row, col];
                     switch (cell)
                     {
-                        case 'F':
+                        case 'F': // Active fire - red
                             Console.ForegroundColor = ConsoleColor.Red;
                             break;
-                        case 'f':
+                        case 'f': // Burned tree - dark red
                             Console.ForegroundColor = ConsoleColor.DarkRed;
                             break;
-                        case 'B':
+                        case 'B': // Tree - green
                             Console.ForegroundColor = ConsoleColor.Green;
                             break;
-                        case 'S':
+                        case 'S': // Stone - gray
                             Console.ForegroundColor = ConsoleColor.Gray;
                             break;
-                        case '-':
+                        case '-': // Empty - default
                             Console.ForegroundColor = ConsoleColor.White;
                             break;
                     }
                     Console.Write(cell);
                 }
                 Console.ResetColor();
-
-                if (maxDisplayWidth < Console.WindowWidth)
-                {
-                    Console.Write(new string(' ', Console.WindowWidth - maxDisplayWidth));
-                }
-
-                if (row < maxDisplayHeight - 1)
-                {
-                    Console.WriteLine();
-                }
+                if (row < height - 1) Console.WriteLine();
             }
 
-            for (int row = maxDisplayHeight; row < Console.WindowHeight - 3; row++)
-            {
-                Console.SetCursorPosition(0, row);
-                Console.Write(new string(' ', Console.WindowWidth));
-            }
-
-            Console.SetCursorPosition(0, Console.WindowHeight - 3);
-            Console.Write(new string(' ', Console.WindowWidth));
-            Console.SetCursorPosition(0, Console.WindowHeight - 3);
-
-            if (width > Console.WindowWidth || height > Console.WindowHeight - 3)
-            {
-                Console.Write($"Showing {maxDisplayWidth}x{maxDisplayHeight} of {width}x{height} forest");
-            }
-
-            Console.SetCursorPosition(0, Console.WindowHeight - 1);
-            Console.Write(new string(' ', Console.WindowWidth));
-            Console.SetCursorPosition(0, Console.WindowHeight - 1);
+            Console.WriteLine();
+            Console.WriteLine();
             Console.Write("Press any key to quit.");
         }
 
@@ -150,7 +123,7 @@ namespace WaldBrand
                     if (forest[row, col] == 'B' && random.NextDouble() < sparkProbability / 10.0)
                     {
                         forest[row, col] = 'F';
-                        fireAge[row, col] = 0;
+                        fireAge[row, col] = 0; // Reset fire age
                     }
                 }
             }
@@ -161,6 +134,7 @@ namespace WaldBrand
             char[,] newForest = new char[height, width];
             int[,] newFireAge = new int[height, width];
 
+            // Copy current state
             for (int row = 0; row < height; row++)
             {
                 for (int col = 0; col < width; col++)
@@ -176,48 +150,22 @@ namespace WaldBrand
                 {
                     if (forest[row, col] == 'F')
                     {
-                        List<(int, int)> neighbors = new List<(int, int)>();
+                        // Spread fire to neighbors
                         for (int dr = -1; dr <= 1; dr++)
                         {
                             for (int dc = -1; dc <= 1; dc++)
                             {
-                                if (dr == 0 && dc == 0) continue;
-
                                 int neighborRow = row + dr;
                                 int neighborCol = col + dc;
 
                                 if (neighborRow >= 0 && neighborRow < height &&
                                     neighborCol >= 0 && neighborCol < width)
                                 {
-                                    neighbors.Add((neighborRow, neighborCol));
-                                }
-                            }
-                        }
-
-                        for (int i = neighbors.Count - 1; i > 0; i--)
-                        {
-                            int j = random.Next(i + 1);
-                            var temp = neighbors[i];
-                            neighbors[i] = neighbors[j];
-                            neighbors[j] = temp;
-                        }
-
-                        foreach (var (neighborRow, neighborCol) in neighbors)
-                        {
-                            if (forest[neighborRow, neighborCol] == 'B')
-                            {
-                                double spreadChance = 0.7;
-
-                                bool isDiagonal = Math.Abs(neighborRow - row) == 1 && Math.Abs(neighborCol - col) == 1;
-                                if (isDiagonal)
-                                {
-                                    spreadChance *= 0.6;
-                                }
-
-                                if (random.NextDouble() < spreadChance)
-                                {
-                                    newForest[neighborRow, neighborCol] = 'F';
-                                    newFireAge[neighborRow, neighborCol] = 0;
+                                    if (forest[neighborRow, neighborCol] == 'B')
+                                    {
+                                        newForest[neighborRow, neighborCol] = 'F';
+                                        newFireAge[neighborRow, neighborCol] = 0;
+                                    }
                                 }
                             }
                         }
@@ -238,22 +186,18 @@ namespace WaldBrand
                     if (forest[row, col] == 'F')
                     {
                         fireAge[row, col]++;
-
-                        int burnDuration = random.Next(2, 5);
-
-                        if (fireAge[row, col] >= burnDuration)
+                        // Fire burns for 2-3 cycles before becoming burned tree
+                        if (fireAge[row, col] >= 2)
                         {
                             forest[row, col] = 'f';
-                            emptyAge[row, col] = 0;
+                            emptyAge[row, col] = 0; // Reset empty age for burned trees
                         }
                     }
                     else if (forest[row, col] == 'f')
                     {
                         emptyAge[row, col]++;
-
-                        int clearDuration = random.Next(3, 7);
-
-                        if (emptyAge[row, col] >= clearDuration)
+                        // Burned trees turn to empty ground after 3-5 cycles
+                        if (emptyAge[row, col] >= 4)
                         {
                             forest[row, col] = '-';
                             emptyAge[row, col] = 0;
@@ -275,36 +219,9 @@ namespace WaldBrand
                 {
                     if (forest[row, col] == '-')
                     {
-                        int minGrowthTime = random.Next(1, 4);
-
-                        bool hasNearbyTrees = false;
-                        for (int dr = -2; dr <= 2 && !hasNearbyTrees; dr++)
-                        {
-                            for (int dc = -2; dc <= 2 && !hasNearbyTrees; dc++)
-                            {
-                                int checkRow = row + dr;
-                                int checkCol = col + dc;
-
-                                if (checkRow >= 0 && checkRow < height &&
-                                    checkCol >= 0 && checkCol < width &&
-                                    forest[checkRow, checkCol] == 'B')
-                                {
-                                    hasNearbyTrees = true;
-                                }
-                            }
-                        }
-
-                        double adjustedGrowthProb = growthProbability / 10.0;
-                        if (hasNearbyTrees)
-                        {
-                            adjustedGrowthProb *= 1.5;
-                        }
-                        else
-                        {
-                            adjustedGrowthProb *= 0.3;
-                        }
-
-                        if (emptyAge[row, col] >= minGrowthTime && random.NextDouble() < adjustedGrowthProb)
+                        // Trees only grow after the ground has been empty for at least 2 cycles
+                        // This prevents immediate regrowth and allows seeing empty forest floor
+                        if (emptyAge[row, col] >= 2 && random.NextDouble() < growthProbability / 10.0)
                         {
                             forest[row, col] = 'B';
                             emptyAge[row, col] = 0;
