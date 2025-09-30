@@ -1,14 +1,14 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Aufgabe15",
-    "\\Aufgabe16",
-    "\\Aufgabe17",
-    "\\Aufgabe18",
-    "\\Aufgabe19",
     "\\Aufgabe20",
-    "\\Memory",
-    "\\Waldbrand"
+    "\\Aufgabe20\\obj",
+    "\\Aufgabe20\\obj\\Release",
+    "\\packages",
+    "\\packages\\Newtonsoft.Json.13.0.4",
+    "\\packages\\Newtonsoft.Json.13.0.4\\lib",
+    "\\Waldbrand",
+    "\\Waldbrand\\Properties"
   ],
   "SelectedNode": "\\Waldbrand\\Waldbrand.csproj",
   "PreviewInSolutionExplorer": false
