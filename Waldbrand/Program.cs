@@ -20,6 +20,8 @@ namespace WaldBrand
 
         static void Main(string[] args)
         {
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+
             Console.WriteLine("Enter forest width:");
             width = int.Parse(Console.ReadLine());
             Console.WriteLine("Enter forest height:");
@@ -71,13 +73,13 @@ namespace WaldBrand
                 UpdateBurntTrees();
                 GrowNewTrees();
                 DisplayForest();
-                System.Threading.Thread.Sleep(500);
+                System.Threading.Thread.Sleep(1500);
             }
         }
 
         static void DisplayForest()
         {
-            int maxDisplayWidth = Math.Min(width, Console.WindowWidth);
+            int maxDisplayWidth = Math.Min(width, Console.WindowWidth / 2);
             int maxDisplayHeight = Math.Min(height, Console.WindowHeight - 3);
 
             Console.SetCursorPosition(0, 0);
@@ -87,31 +89,41 @@ namespace WaldBrand
                 for (int col = 0; col < maxDisplayWidth; col++)
                 {
                     char cell = forest[row, col];
+                    string displayChar;
                     switch (cell)
                     {
                         case 'F':
                             Console.ForegroundColor = ConsoleColor.Red;
+                            displayChar = char.ConvertFromUtf32(0x1F525); // 🔥 
                             break;
                         case 'f':
                             Console.ForegroundColor = ConsoleColor.DarkRed;
+                            displayChar = char.ConvertFromUtf32(0x1F4A8); // 💨 
                             break;
                         case 'B':
                             Console.ForegroundColor = ConsoleColor.Green;
+                            displayChar = char.ConvertFromUtf32(0x1F332); // 🌲
                             break;
                         case 'S':
                             Console.ForegroundColor = ConsoleColor.Gray;
+                            displayChar = char.ConvertFromUtf32(0x1FAA8); // 🪨 
                             break;
                         case '-':
                             Console.ForegroundColor = ConsoleColor.White;
+                            displayChar = char.ConvertFromUtf32(0x2B1C); // ⬜ 
+                            break;
+                        default:
+                            displayChar = cell.ToString();
                             break;
                     }
-                    Console.Write(cell);
+                    Console.Write(displayChar);
                 }
                 Console.ResetColor();
 
-                if (maxDisplayWidth < Console.WindowWidth)
+                int currentPosition = Console.CursorLeft;
+                if (currentPosition < Console.WindowWidth)
                 {
-                    Console.Write(new string(' ', Console.WindowWidth - maxDisplayWidth));
+                    Console.Write(new string(' ', Console.WindowWidth - currentPosition));
                 }
 
                 if (row < maxDisplayHeight - 1)
@@ -130,7 +142,7 @@ namespace WaldBrand
             Console.Write(new string(' ', Console.WindowWidth));
             Console.SetCursorPosition(0, Console.WindowHeight - 3);
 
-            if (width > Console.WindowWidth || height > Console.WindowHeight - 3)
+            if (width > maxDisplayWidth || height > maxDisplayHeight)
             {
                 Console.Write($"Showing {maxDisplayWidth}x{maxDisplayHeight} of {width}x{height} forest");
             }
@@ -143,11 +155,51 @@ namespace WaldBrand
 
         static void StartRandomFires()
         {
+            int existingFireCount = 0;
             for (int row = 0; row < height; row++)
             {
                 for (int col = 0; col < width; col++)
                 {
-                    if (forest[row, col] == 'B' && random.NextDouble() < sparkProbability / 10.0)
+                    if (forest[row, col] == 'F')
+                    {
+                        existingFireCount++;
+                    }
+                }
+            }
+
+            if (existingFireCount == 0)
+            {
+                List<(int, int)> availableTrees = new List<(int, int)>();
+                for (int row = 0; row < height; row++)
+                {
+                    for (int col = 0; col < width; col++)
+                    {
+                        if (forest[row, col] == 'B')
+                        {
+                            availableTrees.Add((row, col));
+                        }
+                    }
+                }
+
+                if (availableTrees.Count > 0)
+                {
+                    int randomIndex = random.Next(availableTrees.Count);
+                    var (fireRow, fireCol) = availableTrees[randomIndex];
+                    forest[fireRow, fireCol] = 'F';
+                    fireAge[fireRow, fireCol] = 0;
+                }
+            }
+
+            if (sparkProbability <= 1)
+            {
+                return;
+            }
+
+            for (int row = 0; row < height; row++)
+            {
+                for (int col = 0; col < width; col++)
+                {
+                    if (forest[row, col] == 'B' && random.NextDouble() < sparkProbability / 100.0)
                     {
                         forest[row, col] = 'F';
                         fireAge[row, col] = 0;
@@ -176,49 +228,20 @@ namespace WaldBrand
                 {
                     if (forest[row, col] == 'F')
                     {
-                        List<(int, int)> neighbors = new List<(int, int)>();
-                        for (int dr = -1; dr <= 1; dr++)
+                        int[] dx = { -1, 1, 0, 0 };
+                        int[] dy = { 0, 0, -1, 1 };
+
+                        for (int i = 0; i < 4; i++)
                         {
-                            for (int dc = -1; dc <= 1; dc++)
+                            int neighborRow = row + dx[i];
+                            int neighborCol = col + dy[i];
+
+                            if (neighborRow >= 0 && neighborRow < height &&
+                                neighborCol >= 0 && neighborCol < width &&
+                                forest[neighborRow, neighborCol] == 'B')
                             {
-                                if (dr == 0 && dc == 0) continue;
-
-                                int neighborRow = row + dr;
-                                int neighborCol = col + dc;
-
-                                if (neighborRow >= 0 && neighborRow < height &&
-                                    neighborCol >= 0 && neighborCol < width)
-                                {
-                                    neighbors.Add((neighborRow, neighborCol));
-                                }
-                            }
-                        }
-
-                        for (int i = neighbors.Count - 1; i > 0; i--)
-                        {
-                            int j = random.Next(i + 1);
-                            var temp = neighbors[i];
-                            neighbors[i] = neighbors[j];
-                            neighbors[j] = temp;
-                        }
-
-                        foreach (var (neighborRow, neighborCol) in neighbors)
-                        {
-                            if (forest[neighborRow, neighborCol] == 'B')
-                            {
-                                double spreadChance = 0.7;
-
-                                bool isDiagonal = Math.Abs(neighborRow - row) == 1 && Math.Abs(neighborCol - col) == 1;
-                                if (isDiagonal)
-                                {
-                                    spreadChance *= 0.6;
-                                }
-
-                                if (random.NextDouble() < spreadChance)
-                                {
-                                    newForest[neighborRow, neighborCol] = 'F';
-                                    newFireAge[neighborRow, neighborCol] = 0;
-                                }
+                                newForest[neighborRow, neighborCol] = 'F';
+                                newFireAge[neighborRow, neighborCol] = 0;
                             }
                         }
                     }
@@ -297,11 +320,11 @@ namespace WaldBrand
                         double adjustedGrowthProb = growthProbability / 10.0;
                         if (hasNearbyTrees)
                         {
-                            adjustedGrowthProb *= 1.5;
+                            adjustedGrowthProb *= 2.5;
                         }
                         else
                         {
-                            adjustedGrowthProb *= 0.3;
+                            adjustedGrowthProb *= 0.7;
                         }
 
                         if (emptyAge[row, col] >= minGrowthTime && random.NextDouble() < adjustedGrowthProb)
