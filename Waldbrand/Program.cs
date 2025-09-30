@@ -56,7 +56,7 @@ namespace WaldBrand
             }
 
             Console.Clear();
-            Console.Title = "Waldbrand Simulation, created 2017 by umu.ch";
+            Console.Title = "Waldbrand Simulation";
 
             while (true)
             {
