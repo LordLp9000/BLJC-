@@ -239,7 +239,7 @@ namespace WaldBrand
                     {
                         fireAge[row, col]++;
 
-                        int burnDuration = random.Next(2, 5);
+                        int burnDuration = random.Next(3, 7);
 
                         if (fireAge[row, col] >= burnDuration)
                         {
@@ -251,7 +251,7 @@ namespace WaldBrand
                     {
                         emptyAge[row, col]++;
 
-                        int clearDuration = random.Next(3, 7);
+                        int clearDuration = random.Next(1, 2);
 
                         if (emptyAge[row, col] >= clearDuration)
                         {
