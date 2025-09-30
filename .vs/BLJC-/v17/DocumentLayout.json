@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\anton\\OneDrive\\Dokumente\\GitHub\\BLJC-\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{EA6CD55E-218D-4654-8623-F0A68780E82D}|Aufgabe20\\Aufgabe20.csproj|c:\\users\\anton\\onedrive\\dokumente\\github\\bljc-\\aufgabe20\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EA6CD55E-218D-4654-8623-F0A68780E82D}|Aufgabe20\\Aufgabe20.csproj|solutionrelative:aufgabe20\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0735B9B0-3495-4D6C-B007-20EA1A3B5FD0}|Memory\\Memory.csproj|c:\\users\\anton\\onedrive\\dokumente\\github\\bljc-\\memory\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0735B9B0-3495-4D6C-B007-20EA1A3B5FD0}|Memory\\Memory.csproj|solutionrelative:memory\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -24,13 +24,13 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\anton\\OneDrive\\Dokumente\\GitHub\\BLJC-\\Aufgabe20\\Program.cs",
-              "RelativeDocumentMoniker": "Aufgabe20\\Program.cs",
-              "ToolTip": "C:\\Users\\anton\\OneDrive\\Dokumente\\GitHub\\BLJC-\\Aufgabe20\\Program.cs",
-              "RelativeToolTip": "Aufgabe20\\Program.cs",
-              "ViewState": "AgIAAB8AAAAAAAAAAAAhwAAAAAAAAAAAAAAAAA==",
+              "DocumentMoniker": "C:\\Users\\anton\\OneDrive\\Dokumente\\GitHub\\BLJC-\\Memory\\Program.cs",
+              "RelativeDocumentMoniker": "Memory\\Program.cs",
+              "ToolTip": "C:\\Users\\anton\\OneDrive\\Dokumente\\GitHub\\BLJC-\\Memory\\Program.cs",
+              "RelativeToolTip": "Memory\\Program.cs",
+              "ViewState": "AgIAAE8AAAAAAAAAAAAkwLEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-30T05:00:54.849Z",
+              "WhenOpened": "2025-09-30T05:16:25.839Z",
               "EditorCaption": ""
             }
           ]
