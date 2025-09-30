@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\anton\\OneDrive\\Dokumente\\GitHub\\BLJC-\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{87B53CDA-8B55-4522-9B0D-55623A8A5703}|Aufgabe18\\Aufgabe18.csproj|c:\\users\\anton\\onedrive\\dokumente\\github\\bljc-\\aufgabe18\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{87B53CDA-8B55-4522-9B0D-55623A8A5703}|Aufgabe18\\Aufgabe18.csproj|solutionrelative:aufgabe18\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{78F27AA8-1535-402F-A133-7483DFC02CBE}|Aufgabe19\\Aufgabe19.csproj|c:\\users\\anton\\onedrive\\dokumente\\github\\bljc-\\aufgabe19\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{78F27AA8-1535-402F-A133-7483DFC02CBE}|Aufgabe19\\Aufgabe19.csproj|solutionrelative:aufgabe19\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -24,13 +24,13 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\anton\\OneDrive\\Dokumente\\GitHub\\BLJC-\\Aufgabe18\\Program.cs",
-              "RelativeDocumentMoniker": "Aufgabe18\\Program.cs",
-              "ToolTip": "C:\\Users\\anton\\OneDrive\\Dokumente\\GitHub\\BLJC-\\Aufgabe18\\Program.cs",
-              "RelativeToolTip": "Aufgabe18\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentMoniker": "C:\\Users\\anton\\OneDrive\\Dokumente\\GitHub\\BLJC-\\Aufgabe19\\Program.cs",
+              "RelativeDocumentMoniker": "Aufgabe19\\Program.cs",
+              "ToolTip": "C:\\Users\\anton\\OneDrive\\Dokumente\\GitHub\\BLJC-\\Aufgabe19\\Program.cs",
+              "RelativeToolTip": "Aufgabe19\\Program.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAhwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-30T04:56:15.929Z",
+              "WhenOpened": "2025-09-30T04:58:36.123Z",
               "EditorCaption": ""
             }
           ]
