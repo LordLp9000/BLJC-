@@ -16,7 +16,7 @@ namespace Aufgabe17
             if (DateTime.TryParseExact(eingabe, "dd.MM.yyyy", null, System.Globalization.DateTimeStyles.None, out DateTime geburtsdatum))
             {
                 DateTime heute = DateTime.Now;
-                
+
                 if (geburtsdatum <= heute)
                 {
                     BerechneBAlter(geburtsdatum, heute);
@@ -37,28 +37,23 @@ namespace Aufgabe17
 
         static void BerechneBAlter(DateTime geburtsdatum, DateTime heute)
         {
-            // Alter in Jahren - nur komplett abgelaufene Jahre
             int jahre = heute.Year - geburtsdatum.Year;
-            if (heute.Month < geburtsdatum.Month || 
+            if (heute.Month < geburtsdatum.Month ||
                 (heute.Month == geburtsdatum.Month && heute.Day < geburtsdatum.Day))
             {
                 jahre--;
             }
 
-            // Alter in Monaten - nur komplett abgelaufene Monate
             int monate = (heute.Year - geburtsdatum.Year) * 12 + (heute.Month - geburtsdatum.Month);
             if (heute.Day < geburtsdatum.Day)
             {
                 monate--;
             }
 
-            // Gesamte Zeitspanne berechnen
             TimeSpan zeitspanne = heute - geburtsdatum;
-            
-            // Alter in Wochen
+
             int wochen = (int)(zeitspanne.TotalDays / 7);
 
-            // Alter in Tagen
             int tage = (int)zeitspanne.TotalDays;
 
             Console.WriteLine($"Alter in Jahren: {jahre}");

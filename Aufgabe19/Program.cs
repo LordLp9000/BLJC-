@@ -36,7 +36,6 @@ namespace Aufgabe19
         {
             try
             {
-                // Entferne alle Leerzeichen
                 string bereinigteEingabe = eingabe.Replace(" ", "");
 
                 if (string.IsNullOrEmpty(bereinigteEingabe))
@@ -45,12 +44,10 @@ namespace Aufgabe19
                     return;
                 }
 
-                // Finde den Operator
                 char[] operatoren = { '+', '-', '*', '/' };
                 int operatorPosition = -1;
                 char gefundenerOperator = ' ';
 
-                // Suche nach Operator (nicht am Anfang für negative Zahlen)
                 for (int i = 1; i < bereinigteEingabe.Length; i++)
                 {
                     if (operatoren.Contains(bereinigteEingabe[i]))
@@ -67,7 +64,6 @@ namespace Aufgabe19
                     return;
                 }
 
-                // Teile die Eingabe in Zahlen auf
                 string zahl1String = bereinigteEingabe.Substring(0, operatorPosition);
                 string zahl2String = bereinigteEingabe.Substring(operatorPosition + 1);
 
@@ -77,15 +73,13 @@ namespace Aufgabe19
                     return;
                 }
 
-                // Konvertiere zu Zahlen
-                if (!double.TryParse(zahl1String, out double zahl1) || 
+                if (!double.TryParse(zahl1String, out double zahl1) ||
                     !double.TryParse(zahl2String, out double zahl2))
                 {
                     Console.WriteLine("Ungültige Zahlen eingegeben!");
                     return;
                 }
 
-                // Führe die Berechnung durch
                 double ergebnis = 0;
                 bool gültigeOperation = true;
 
@@ -115,7 +109,6 @@ namespace Aufgabe19
 
                 if (gültigeOperation)
                 {
-                    // Zeige das Ergebnis an (formatiert wie in der Referenz)
                     if (ergebnis == Math.Floor(ergebnis))
                     {
                         Console.WriteLine((int)ergebnis);

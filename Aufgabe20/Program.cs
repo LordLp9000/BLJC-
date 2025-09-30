@@ -20,15 +20,15 @@ namespace Aufgabe20
                 try
                 {
                     ZeigeWitz();
-                    
+
                     Console.Write("Nächsten Witz holen? j/n ");
                     string antwort = Console.ReadLine();
-                    
+
                     if (antwort?.ToLower() != "j")
                     {
                         break;
                     }
-                    
+
                     Console.WriteLine();
                 }
                 catch (Exception ex)
@@ -36,7 +36,7 @@ namespace Aufgabe20
                     Console.WriteLine($"Fehler beim Laden des Witzes: {ex.Message}");
                     Console.Write("Erneut versuchen? j/n ");
                     string antwort = Console.ReadLine();
-                    
+
                     if (antwort?.ToLower() != "j")
                     {
                         break;
@@ -51,18 +51,18 @@ namespace Aufgabe20
         static void ZeigeWitz()
         {
             string apiUrl = "https://witzapi.de/api/joke/";
-            
+
             Console.WriteLine("Lade Witz...");
-            
+
             WebRequest request = WebRequest.Create(apiUrl);
             WebResponse response = request.GetResponse();
             Stream responseStream = response.GetResponseStream();
             string jsonData = new StreamReader(responseStream).ReadToEnd();
-            
+
             response.Close();
-            
+
             string witzText = ExtrahiereWitzText(jsonData);
-            
+
             if (!string.IsNullOrEmpty(witzText))
             {
                 Console.Clear();
@@ -81,27 +81,24 @@ namespace Aufgabe20
         {
             try
             {
-                // Einfache JSON-Parsing für das Format [{"text":"...", "language":"de"}]
                 int textStart = jsonData.IndexOf("\"text\":\"");
                 if (textStart == -1) return null;
-                
-                textStart += 8; // Länge von "text":"
+
+                textStart += 8;
                 int textEnd = jsonData.IndexOf("\",\"language\"", textStart);
                 if (textEnd == -1)
                 {
-                    // Fallback: suche nach dem nächsten "
                     textEnd = jsonData.IndexOf("\"", textStart);
                     if (textEnd == -1) return null;
                 }
-                
+
                 string witzText = jsonData.Substring(textStart, textEnd - textStart);
-                
-                // Escape-Sequenzen ersetzen
+
                 witzText = witzText.Replace("\\n", "\n");
                 witzText = witzText.Replace("\\r", "\r");
                 witzText = witzText.Replace("\\\"", "\"");
                 witzText = witzText.Replace("\\\\", "\\");
-                
+
                 return witzText;
             }
             catch
