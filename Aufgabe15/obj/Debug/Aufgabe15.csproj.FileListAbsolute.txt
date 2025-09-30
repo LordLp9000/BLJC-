@@ -1,0 +1,8 @@
+C:\Users\anton\OneDrive\Dokumente\GitHub\BLJC-\Aufgabe15\bin\Debug\Aufgabe15.exe.config
+C:\Users\anton\OneDrive\Dokumente\GitHub\BLJC-\Aufgabe15\bin\Debug\Aufgabe15.exe
+C:\Users\anton\OneDrive\Dokumente\GitHub\BLJC-\Aufgabe15\bin\Debug\Aufgabe15.pdb
+C:\Users\anton\OneDrive\Dokumente\GitHub\BLJC-\Aufgabe15\obj\Debug\Aufgabe15.csproj.AssemblyReference.cache
+C:\Users\anton\OneDrive\Dokumente\GitHub\BLJC-\Aufgabe15\obj\Debug\Aufgabe15.csproj.CoreCompileInputs.cache
+C:\Users\anton\OneDrive\Dokumente\GitHub\BLJC-\Aufgabe15\obj\Debug\Aufgabe15.exe
+C:\Users\anton\OneDrive\Dokumente\GitHub\BLJC-\Aufgabe15\obj\Debug\Aufgabe15.pdb
+C:\Users\anton\OneDrive\Dokumente\GitHub\BLJC-\Aufgabe15\obj\Debug\Aufgabe15.exe.config
