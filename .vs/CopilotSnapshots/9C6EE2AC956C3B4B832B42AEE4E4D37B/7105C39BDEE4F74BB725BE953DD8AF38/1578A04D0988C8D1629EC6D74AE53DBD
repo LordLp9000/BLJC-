@@ -1,0 +1,64 @@
+﻿// Ignore Spelling: Aufgabe
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Aufgabe12
+{
+    internal class Program
+    {
+        static int[] SumUp(int[] arr)
+        {
+            int[] result = new int[arr.Length];
+            int sum = 0;
+            
+            for (int i = 0; i < arr.Length; i++)
+            {
+                sum += arr[i];
+                result[i] = sum;
+            }
+            
+            return result;
+        }
+        
+        static void Main(string[] args)
+        {
+            string input = Console.ReadLine();
+            
+            // Validate input is not null, empty, or whitespace
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                Console.WriteLine("Please enter comma-separated numbers.");
+                return;
+            }
+
+            // Split with RemoveEmptyEntries to handle empty strings
+            string[] inputArray = input.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            
+            // Trim whitespace and validate we have actual input
+            for (int i = 0; i < inputArray.Length; i++)
+            {
+                inputArray[i] = inputArray[i].Trim();
+            }
+
+            try
+            {
+                // Konvertiere die Eingabe in ein int-Array
+                int[] numbers = Array.ConvertAll(inputArray, int.Parse);
+
+                // Rufe die SumUp-Methode auf und erhalte das Ergebnis
+                int[] result = SumUp(numbers);
+
+                // Gebe das Ergebnis aus
+                Console.WriteLine(string.Join(", ", result));
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Invalid input. Please enter valid comma-separated integers.");
+            }
+        }
+    }
+}

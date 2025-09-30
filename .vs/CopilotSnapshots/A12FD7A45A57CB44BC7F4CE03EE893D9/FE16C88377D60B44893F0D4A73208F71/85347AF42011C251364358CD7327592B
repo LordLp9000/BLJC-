@@ -1,0 +1,32 @@
+﻿// Ignore Spelling: Aufgabe
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Aufgabe11
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Quersumme einer Zahl berechnen");
+            Console.WriteLine("Geben Sie eine Zahl ein:");
+            string eingabe1 = Console.ReadLine();
+            string eingabe2 = Console.ReadLine();
+            ///<summary>
+            /// Zweite Zahl definiert wie lange die quersumme berechnet werden muss bis das Programm stopt
+            ///</summary>
+            int zahl = Convert.ToInt32(eingabe1);
+            int zahl = Convert.ToInt32(eingabe2);
+            int sqrt = (int)Math.Sqrt(zahl);
+            int sqrt = (int)Math.Sqrt(zahl);
+            Console.WriteLine("Zahl. Quersumme. Zahl/Quersumme");
+            Console.WriteLine(zahl + " " + sqrt + " " + (zahl / sqrt));
+            Console.ReadKey();
+        }
+    }
+
+}

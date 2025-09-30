@@ -1,0 +1,8 @@
+C:\Users\anton\OneDrive\Dokumente\_blj\C#\Aufgabe2\bin\Debug\Aufgabe2.exe.config
+C:\Users\anton\OneDrive\Dokumente\_blj\C#\Aufgabe2\bin\Debug\Aufgabe2.exe
+C:\Users\anton\OneDrive\Dokumente\_blj\C#\Aufgabe2\bin\Debug\Aufgabe2.pdb
+C:\Users\anton\OneDrive\Dokumente\_blj\C#\Aufgabe2\obj\Debug\Aufgabe2.csproj.AssemblyReference.cache
+C:\Users\anton\OneDrive\Dokumente\_blj\C#\Aufgabe2\obj\Debug\Aufgabe2.csproj.CoreCompileInputs.cache
+C:\Users\anton\OneDrive\Dokumente\_blj\C#\Aufgabe2\obj\Debug\Aufgabe2.exe
+C:\Users\anton\OneDrive\Dokumente\_blj\C#\Aufgabe2\obj\Debug\Aufgabe2.pdb
+C:\Users\anton\OneDrive\Dokumente\_blj\C#\Aufgabe2\obj\Debug\Aufgabe2.exe.config

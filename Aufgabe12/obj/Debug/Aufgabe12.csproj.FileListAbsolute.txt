@@ -1,0 +1,8 @@
+C:\Users\anton\OneDrive\Dokumente\_blj\C#\Aufgabe12\bin\Debug\Aufgabe12.exe.config
+C:\Users\anton\OneDrive\Dokumente\_blj\C#\Aufgabe12\bin\Debug\Aufgabe12.exe
+C:\Users\anton\OneDrive\Dokumente\_blj\C#\Aufgabe12\bin\Debug\Aufgabe12.pdb
+C:\Users\anton\OneDrive\Dokumente\_blj\C#\Aufgabe12\obj\Debug\Aufgabe12.csproj.AssemblyReference.cache
+C:\Users\anton\OneDrive\Dokumente\_blj\C#\Aufgabe12\obj\Debug\Aufgabe12.csproj.CoreCompileInputs.cache
+C:\Users\anton\OneDrive\Dokumente\_blj\C#\Aufgabe12\obj\Debug\Aufgabe12.exe
+C:\Users\anton\OneDrive\Dokumente\_blj\C#\Aufgabe12\obj\Debug\Aufgabe12.pdb
+C:\Users\anton\OneDrive\Dokumente\_blj\C#\Aufgabe12\obj\Debug\Aufgabe12.exe.config

@@ -1,0 +1,34 @@
+﻿// Ignore Spelling: Aufgabe
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Aufgabe12
+{
+    internal class Program
+    {
+        static int[] SumUp(int[] arr)
+        {
+
+            int[] result = new int[arr.Length];
+
+
+
+            return result;
+        }
+        static void Main(string[] args)
+        {
+            string input = Console.ReadLine();
+            string[] inputArray = input.Split(',');
+
+            int[] numbers = Array.ConvertAll(inputArray, int.Parse);
+
+            int[] result = SumUp(numbers);
+
+            Console.WriteLine(string.Join(", ", result));
+        }
+    }
+}

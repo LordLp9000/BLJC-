@@ -1,0 +1,15 @@
+C:\Users\anton\OneDrive\Dokumente\_blj\C#\GrundlagenC#\bin\Debug\GrundlagenC#.exe.config
+C:\Users\anton\OneDrive\Dokumente\_blj\C#\GrundlagenC#\bin\Debug\GrundlagenC#.exe
+C:\Users\anton\OneDrive\Dokumente\_blj\C#\GrundlagenC#\bin\Debug\GrundlagenC#.pdb
+C:\Users\anton\OneDrive\Dokumente\_blj\C#\GrundlagenC#\obj\Debug\GrundlagenC#.csproj.AssemblyReference.cache
+C:\Users\anton\OneDrive\Dokumente\_blj\C#\GrundlagenC#\obj\Debug\GrundlagenC#.csproj.CoreCompileInputs.cache
+C:\Users\anton\OneDrive\Dokumente\_blj\C#\GrundlagenC#\obj\Debug\GrundlagenC#.exe
+C:\Users\anton\OneDrive\Dokumente\_blj\C#\GrundlagenC#\obj\Debug\GrundlagenC#.pdb
+C:\Users\anton\OneDrive\Dokumente\GitHub\BLJC-\GrundlagenC#\bin\Debug\GrundlagenC#.exe.config
+C:\Users\anton\OneDrive\Dokumente\GitHub\BLJC-\GrundlagenC#\bin\Debug\GrundlagenC#.exe
+C:\Users\anton\OneDrive\Dokumente\GitHub\BLJC-\GrundlagenC#\bin\Debug\GrundlagenC#.pdb
+C:\Users\anton\OneDrive\Dokumente\GitHub\BLJC-\GrundlagenC#\obj\Debug\GrundlagenC#.csproj.AssemblyReference.cache
+C:\Users\anton\OneDrive\Dokumente\GitHub\BLJC-\GrundlagenC#\obj\Debug\GrundlagenC#.exe.config
+C:\Users\anton\OneDrive\Dokumente\GitHub\BLJC-\GrundlagenC#\obj\Debug\GrundlagenC#.csproj.CoreCompileInputs.cache
+C:\Users\anton\OneDrive\Dokumente\GitHub\BLJC-\GrundlagenC#\obj\Debug\GrundlagenC#.exe
+C:\Users\anton\OneDrive\Dokumente\GitHub\BLJC-\GrundlagenC#\obj\Debug\GrundlagenC#.pdb

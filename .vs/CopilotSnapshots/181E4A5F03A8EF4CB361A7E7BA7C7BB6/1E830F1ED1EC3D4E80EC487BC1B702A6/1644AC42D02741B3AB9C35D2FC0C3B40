@@ -1,0 +1,133 @@
+﻿// Ignore Spelling: Aufgabe
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Aufgabe15
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("=== Tannenbaum Zeichner ===");
+            Console.WriteLine();
+
+            // Benutzereingaben
+            int stammBreite = GetUserInput("Wie breit soll der Stamm sein? ");
+            int stammHoehe = GetUserInput("Wie hoch soll der Stamm sein? ");
+            int kronenHoehe = GetUserInput("Wie hoch soll die Krone sein? ");
+
+            Console.WriteLine();
+            Console.WriteLine("Hier ist Ihr Tannenbaum:");
+            Console.WriteLine();
+
+            // Zeichne die Krone
+            ZeichneKrone(kronenHoehe);
+
+            // Zeichne den Stamm
+            ZeichneStamm(stammBreite, stammHoehe, kronenHoehe);
+
+            Console.WriteLine();
+            Console.WriteLine("Drücken Sie eine beliebige Taste zum Beenden...");
+            Console.ReadKey();
+        }
+
+        static int GetUserInput(string prompt)
+        {
+            int wert;
+            do
+            {
+                Console.Write(prompt);
+                string eingabe = Console.ReadLine();
+                
+                if (int.TryParse(eingabe, out wert) && wert > 0)
+                {
+                    return wert;
+                }
+                
+                Console.WriteLine("Bitte geben Sie eine gültige positive Zahl ein.");
+            } while (true);
+        }
+
+        static void ZeichneKrone(int hoehe)
+        {
+            // Erstelle mehrere Dreiecks-Schichten die sich überlappen
+            int schichten = Math.Max(2, hoehe / 3); // Anzahl der Dreieck-Schichten
+            int zeilenProSchicht = hoehe / schichten;
+            int extraZeilen = hoehe % schichten;
+            
+            int gesamtZeilen = 0;
+            int maxBreite = 0;
+
+            // Berechne die maximale Breite für die Zentrierung
+            for (int schicht = 0; schicht < schichten; schicht++)
+            {
+                int aktuelleSchichtHoehe = zeilenProSchicht;
+                if (schicht < extraZeilen) aktuelleSchichtHoehe++;
+                
+                for (int zeile = 0; zeile < aktuelleSchichtHoehe; zeile++)
+                {
+                    int breite = 1 + 2 * zeile;
+                    if (breite > maxBreite) maxBreite = breite;
+                }
+            }
+
+            // Zeichne die Schichten
+            for (int schicht = 0; schicht < schichten; schicht++)
+            {
+                int aktuelleSchichtHoehe = zeilenProSchicht;
+                if (schicht < extraZeilen) aktuelleSchichtHoehe++;
+
+                for (int zeile = 0; zeile < aktuelleSchichtHoehe; zeile++)
+                {
+                    int breite = 1 + 2 * zeile;
+                    int leerzeichen = (maxBreite - breite) / 2;
+
+                    // Zeichne Leerzeichen
+                    for (int j = 0; j < leerzeichen; j++)
+                    {
+                        Console.Write(" ");
+                    }
+
+                    // Zeichne Sterne
+                    for (int j = 0; j < breite; j++)
+                    {
+                        Console.Write("*");
+                    }
+
+                    Console.WriteLine();
+                }
+            }
+        }
+
+        static void ZeichneStamm(int breite, int hoehe, int kronenHoehe)
+        {
+            // Berechne die Kronenbreite für korrekte Zentrierung
+            int schichten = Math.Max(2, kronenHoehe / 3);
+            int zeilenProSchicht = kronenHoehe / schichten;
+            int maxKronenBreite = 1 + 2 * (zeilenProSchicht - 1);
+            
+            int stammOffset = (maxKronenBreite - breite) / 2;
+
+            for (int i = 0; i < hoehe; i++)
+            {
+                // Zeichne Leerzeichen für Zentrierung
+                for (int j = 0; j < stammOffset; j++)
+                {
+                    Console.Write(" ");
+                }
+
+                // Zeichne Stamm
+                for (int j = 0; j < breite; j++)
+                {
+                    Console.Write("*");
+                }
+
+                Console.WriteLine();
+            }
+        }
+    }
+}

@@ -1,0 +1,121 @@
+﻿// Ignore Spelling: Aufgabe
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Aufgabe15
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("=== Tannenbaum Zeichner ===");
+            Console.WriteLine();
+
+            // Benutzereingaben
+            int stammBreite = GetUserInput("Wie breit soll der Stamm sein? ");
+            int stammHoehe = GetUserInput("Wie hoch soll der Stamm sein? ");
+            int kronenHoehe = GetUserInput("Wie hoch soll die Krone sein? ");
+
+            Console.WriteLine();
+            Console.WriteLine("Hier ist Ihr Tannenbaum:");
+            Console.WriteLine();
+
+            // Zeichne die Krone
+            ZeichneKrone(kronenHoehe);
+
+            // Zeichne den Stamm
+            ZeichneStamm(stammBreite, stammHoehe, kronenHoehe);
+
+            Console.WriteLine();
+            Console.WriteLine("Drücken Sie eine beliebige Taste zum Beenden...");
+            Console.ReadKey();
+        }
+
+        static int GetUserInput(string prompt)
+        {
+            int wert;
+            do
+            {
+                Console.Write(prompt);
+                string eingabe = Console.ReadLine();
+                
+                if (int.TryParse(eingabe, out wert) && wert > 0)
+                {
+                    return wert;
+                }
+                
+                Console.WriteLine("Bitte geben Sie eine gültige positive Zahl ein.");
+            } while (true);
+        }
+
+        static void ZeichneKrone(int hoehe)
+        {
+            // Einfache Schichten ohne Breitenbegrenzung
+            int schichtGroesse = 3; // Jede Schicht hat 3 Zeilen
+            int aktuelleZeile = 0;
+            int aktuelleSchicht = 0;
+
+            while (aktuelleZeile < hoehe)
+            {
+                // Berechne wie viele Zeilen für diese Schicht übrig sind
+                int verbleibendeZeilen = hoehe - aktuelleZeile;
+                int dieseSchichtHoehe = Math.Min(schichtGroesse, verbleibendeZeilen);
+                
+                for (int i = 0; i < dieseSchichtHoehe; i++)
+                {
+                    // Breite wächst einfach mit jeder Zeile - KEINE BEGRENZUNG
+                    int breite = 1 + 2 * (aktuelleSchicht + i);
+                    
+                    // Zentrierung basierend auf der breitesten Zeile (letzte Zeile)
+                    int maxBreite = 1 + 2 * (hoehe + schichtGroesse - 1);
+                    int leerzeichen = (maxBreite - breite) / 2;
+
+                    // Zeichne die Leerzeichen
+                    for (int j = 0; j < leerzeichen; j++)
+                    {
+                        Console.Write(" ");
+                    }
+
+                    // Zeichne die Sterne
+                    for (int j = 0; j < breite; j++)
+                    {
+                        Console.Write("*");
+                    }
+
+                    Console.WriteLine();
+                    aktuelleZeile++;
+                }
+                
+                aktuelleSchicht += schichtGroesse - 1; // Überlappung zwischen Schichten
+            }
+        }
+
+        static void ZeichneStamm(int breite, int hoehe, int kronenHoehe)
+        {
+            // Zentrierung basierend auf der tatsächlichen maximalen Kronenbreite
+            int maxKronenBreite = 1 + 2 * (kronenHoehe + 2); // Großzügiger für breite Krone
+            int stammOffset = (maxKronenBreite - breite) / 2;
+
+            for (int i = 0; i < hoehe; i++)
+            {
+                // Zeichne die Leerzeichen für die Zentrierung
+                for (int j = 0; j < stammOffset; j++)
+                {
+                    Console.Write(" ");
+                }
+
+                // Zeichne den Stamm
+                for (int j = 0; j < breite; j++)
+                {
+                    Console.Write("*");
+                }
+
+                Console.WriteLine();
+            }
+        }
+    }
+}
