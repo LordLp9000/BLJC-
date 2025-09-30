@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,10 +21,7 @@ namespace Aufgabe15
             Console.WriteLine("Hier ist Ihr Tannenbaum:");
             Console.WriteLine();
 
-            // Zeichne die Krone
             ZeichneKrone(kronenHoehe);
-
-            // Zeichne den Stamm
             ZeichneStamm(stammBreite, stammHoehe, kronenHoehe);
 
             Console.WriteLine();
@@ -51,48 +48,30 @@ namespace Aufgabe15
 
         static void ZeichneKrone(int hoehe)
         {
-            int schichtGroesse = Math.Max(2, hoehe / 4);
-            int maxBreite = 1;
-
-            while (aktuelleZeile < hoehe)
+            for (int zeile = 0; zeile < hoehe; zeile++)
             {
-                int verbleibendeZeilen = hoehe - aktuelleZeile;
-                int dieseSchichtHoehe = Math.Min(schichtGroesse, verbleibendeZeilen);
+                int breite = 1 + 2 * zeile;
+                int maxBreite = 1 + 2 * (hoehe - 1);
+                int leerzeichen = (maxBreite - breite) / 2;
 
-                int startBreite = maxBreite > 1 ? Math.Max(1, maxBreite - 4) : 1;
-
-                for (int i = 0; i < dieseSchichtHoehe; i++)
+                for (int j = 0; j < leerzeichen; j++)
                 {
-                    int breite = startBreite + 2 * i;
-
-                    int maxMoeglicheBreite = hoehe * 2 - 1;
-                    int leerzeichen = (maxMoeglicheBreite - breite) / 2;
-
-                    for (int j = 0; j < leerzeichen; j++)
-                    {
-                        Console.Write(" ");
-                    }
-
-                    for (int j = 0; j < breite; j++)
-                    {
-                        Console.Write("*");
-                    }
-
-                    Console.WriteLine();
-                    aktuelleZeile++;
-
-                    if (breite > maxBreite)
-                        maxBreite = breite;
+                    Console.Write(" ");
                 }
 
-                schichtGroesse++;
+                for (int j = 0; j < breite; j++)
+                {
+                    Console.Write("*");
+                }
+
+                Console.WriteLine();
             }
         }
 
         static void ZeichneStamm(int breite, int hoehe, int kronenHoehe)
         {
-            int maxMoeglicheBreite = kronenHoehe * 2 - 1;
-            int stammOffset = (maxMoeglicheBreite - breite) / 2;
+            int maxKronenBreite = 1 + 2 * (kronenHoehe - 1);
+            int stammOffset = (maxKronenBreite - breite) / 2;
 
             for (int i = 0; i < hoehe; i++)
             {
