@@ -1,0 +1,92 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Net.Http;
+using Newtonsoft.Json;
+
+namespace Aufgabe20
+{
+    public class Witz
+    {
+        public string text { get; set; }
+        public string language { get; set; }
+    }
+
+    internal class Program
+    {
+        private static readonly HttpClient client = new HttpClient();
+
+        static async Task Main(string[] args)
+        {
+            Console.WriteLine("=== Witz Generator ===");
+            Console.WriteLine();
+
+            while (true)
+            {
+                try
+                {
+                    await ZeigeWitz();
+                    
+                    Console.Write("Nächsten Witz holen? j/n ");
+                    string antwort = Console.ReadLine();
+                    
+                    if (antwort?.ToLower() != "j")
+                    {
+                        break;
+                    }
+                    
+                    Console.WriteLine();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Fehler beim Laden des Witzes: {ex.Message}");
+                    Console.Write("Erneut versuchen? j/n ");
+                    string antwort = Console.ReadLine();
+                    
+                    if (antwort?.ToLower() != "j")
+                    {
+                        break;
+                    }
+                }
+            }
+
+            Console.WriteLine("Auf Wiedersehen!");
+            Console.ReadKey();
+        }
+
+        static async Task ZeigeWitz()
+        {
+            string apiUrl = "https://witzapi.de/api/joke/";
+            
+            Console.WriteLine("Lade Witz...");
+            
+            HttpResponseMessage response = await client.GetAsync(apiUrl);
+            
+            if (response.IsSuccessStatusCode)
+            {
+                string jsonContent = await response.Content.ReadAsStringAsync();
+                
+                Witz[] witze = JsonConvert.DeserializeObject<Witz[]>(jsonContent);
+                
+                if (witze != null && witze.Length > 0)
+                {
+                    Console.Clear();
+                    Console.WriteLine("=== Witz Generator ===");
+                    Console.WriteLine();
+                    Console.WriteLine(witze[0].text);
+                    Console.WriteLine();
+                }
+                else
+                {
+                    Console.WriteLine("Keine Witze erhalten.");
+                }
+            }
+            else
+            {
+                Console.WriteLine($"Fehler beim Abrufen der Daten: {response.StatusCode}");
+            }
+        }
+    }
+}

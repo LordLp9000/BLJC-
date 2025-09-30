@@ -5,3 +5,4 @@ C:\Users\anton\OneDrive\Dokumente\GitHub\BLJC-\Aufgabe19\obj\Debug\Aufgabe19.csp
 C:\Users\anton\OneDrive\Dokumente\GitHub\BLJC-\Aufgabe19\obj\Debug\Aufgabe19.csproj.CoreCompileInputs.cache
 C:\Users\anton\OneDrive\Dokumente\GitHub\BLJC-\Aufgabe19\obj\Debug\Aufgabe19.exe
 C:\Users\anton\OneDrive\Dokumente\GitHub\BLJC-\Aufgabe19\obj\Debug\Aufgabe19.pdb
+C:\Users\anton\OneDrive\Dokumente\GitHub\BLJC-\Aufgabe19\obj\Debug\Aufgabe19.exe.config
