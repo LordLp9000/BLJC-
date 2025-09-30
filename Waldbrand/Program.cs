@@ -17,6 +17,8 @@ namespace WaldBrand
         static double sparkProbability;
         static double growthProbability;
         static Random random = new Random();
+        static bool initialFireCreated = false;
+        static int turnCounter = 0;
 
         static void Main(string[] args)
         {
@@ -68,6 +70,7 @@ namespace WaldBrand
                     break;
                 }
 
+                turnCounter++;
                 StartRandomFires();
                 SpreadFires();
                 UpdateBurntTrees();
@@ -155,19 +158,19 @@ namespace WaldBrand
 
         static void StartRandomFires()
         {
-            int existingFireCount = 0;
+            int existingFires = 0;
             for (int row = 0; row < height; row++)
             {
                 for (int col = 0; col < width; col++)
                 {
                     if (forest[row, col] == 'F')
                     {
-                        existingFireCount++;
+                        existingFires++;
                     }
                 }
             }
 
-            if (existingFireCount == 0)
+            if (existingFires == 0 && !initialFireCreated)
             {
                 List<(int, int)> availableTrees = new List<(int, int)>();
                 for (int row = 0; row < height; row++)
@@ -187,10 +190,11 @@ namespace WaldBrand
                     var (fireRow, fireCol) = availableTrees[randomIndex];
                     forest[fireRow, fireCol] = 'F';
                     fireAge[fireRow, fireCol] = 0;
+                    initialFireCreated = true;
                 }
             }
 
-            if (sparkProbability <= 1)
+            if (sparkProbability <= 1.0)
             {
                 return;
             }
@@ -210,6 +214,11 @@ namespace WaldBrand
 
         static void SpreadFires()
         {
+            if (sparkProbability <= 1.0 && turnCounter == 1)
+            {
+                return;
+            }
+
             char[,] newForest = new char[height, width];
             int[,] newFireAge = new int[height, width];
 
@@ -228,10 +237,10 @@ namespace WaldBrand
                 {
                     if (forest[row, col] == 'F')
                     {
-                        int[] dx = { -1, 1, 0, 0 };
-                        int[] dy = { 0, 0, -1, 1 };
+                        int[] dx = { -1, -1, -1, 0, 0, 1, 1, 1 };
+                        int[] dy = { -1, 0, 1, -1, 1, -1, 0, 1 };
 
-                        for (int i = 0; i < 4; i++)
+                        for (int i = 0; i < 8; i++)
                         {
                             int neighborRow = row + dx[i];
                             int neighborCol = col + dy[i];
@@ -274,7 +283,7 @@ namespace WaldBrand
                     {
                         emptyAge[row, col]++;
 
-                        int clearDuration = random.Next(1, 2);
+                        int clearDuration = random.Next(1, 3);
 
                         if (emptyAge[row, col] >= clearDuration)
                         {
@@ -296,38 +305,33 @@ namespace WaldBrand
             {
                 for (int col = 0; col < width; col++)
                 {
-                    if (forest[row, col] == '-')
+                    if (forest[row, col] == '-'
+                        && emptyAge[row, col] >= 4)
                     {
-                        int minGrowthTime = random.Next(1, 4);
-
-                        bool hasNearbyTrees = false;
-                        for (int dr = -2; dr <= 2 && !hasNearbyTrees; dr++)
+                        bool hasNearbyBurntTrees = false;
+                        for (int dr = -1; dr <= 1 && !hasNearbyBurntTrees; dr++)
                         {
-                            for (int dc = -2; dc <= 2 && !hasNearbyTrees; dc++)
+                            for (int dc = -1; dc <= 1 && !hasNearbyBurntTrees; dc++)
                             {
                                 int checkRow = row + dr;
                                 int checkCol = col + dc;
 
                                 if (checkRow >= 0 && checkRow < height &&
                                     checkCol >= 0 && checkCol < width &&
-                                    forest[checkRow, checkCol] == 'B')
+                                    forest[checkRow, checkCol] == 'f')
                                 {
-                                    hasNearbyTrees = true;
+                                    hasNearbyBurntTrees = true;
                                 }
                             }
                         }
 
                         double adjustedGrowthProb = growthProbability / 10.0;
-                        if (hasNearbyTrees)
+                        if (hasNearbyBurntTrees)
                         {
-                            adjustedGrowthProb *= 2.5;
-                        }
-                        else
-                        {
-                            adjustedGrowthProb *= 0.7;
+                            adjustedGrowthProb *= 4.0;
                         }
 
-                        if (emptyAge[row, col] >= minGrowthTime && random.NextDouble() < adjustedGrowthProb)
+                        if (random.NextDouble() < adjustedGrowthProb)
                         {
                             forest[row, col] = 'B';
                             emptyAge[row, col] = 0;
