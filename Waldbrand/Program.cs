@@ -19,6 +19,7 @@ namespace WaldBrand
         static Random random = new Random();
         static bool initialFireCreated = false;
         static int turnCounter = 0;
+        static bool justRestarted = false;
 
         static void Main(string[] args)
         {
@@ -170,6 +171,11 @@ namespace WaldBrand
                 }
             }
 
+            if (existingFires == 0)
+            {
+                initialFireCreated = false;
+            }
+
             if (existingFires == 0 && !initialFireCreated)
             {
                 List<(int, int)> availableTrees = new List<(int, int)>();
@@ -191,6 +197,7 @@ namespace WaldBrand
                     forest[fireRow, fireCol] = 'F';
                     fireAge[fireRow, fireCol] = 0;
                     initialFireCreated = true;
+                    justRestarted = true;
                 }
             }
 
@@ -214,8 +221,9 @@ namespace WaldBrand
 
         static void SpreadFires()
         {
-            if (sparkProbability <= 1.0 && turnCounter == 1)
+            if (sparkProbability <= 1.0 && (turnCounter == 1 || justRestarted))
             {
+                justRestarted = false;
                 return;
             }
 
@@ -271,7 +279,7 @@ namespace WaldBrand
                     {
                         fireAge[row, col]++;
 
-                        int burnDuration = random.Next(3, 7);
+                        int burnDuration = random.Next(3, 5);
 
                         if (fireAge[row, col] >= burnDuration)
                         {
@@ -306,7 +314,7 @@ namespace WaldBrand
                 for (int col = 0; col < width; col++)
                 {
                     if (forest[row, col] == '-'
-                        && emptyAge[row, col] >= 4)
+                        && emptyAge[row, col] >= 3)
                     {
                         bool hasNearbyBurntTrees = false;
                         for (int dr = -1; dr <= 1 && !hasNearbyBurntTrees; dr++)
@@ -328,7 +336,7 @@ namespace WaldBrand
                         double adjustedGrowthProb = growthProbability / 10.0;
                         if (hasNearbyBurntTrees)
                         {
-                            adjustedGrowthProb *= 4.0;
+                            adjustedGrowthProb *= 5.0;
                         }
 
                         if (random.NextDouble() < adjustedGrowthProb)

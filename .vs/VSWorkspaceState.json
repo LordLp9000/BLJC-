@@ -1,15 +1,16 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Aufgabe20",
     "\\Aufgabe20\\obj",
     "\\Aufgabe20\\obj\\Release",
-    "\\packages",
     "\\packages\\Newtonsoft.Json.13.0.4",
     "\\packages\\Newtonsoft.Json.13.0.4\\lib",
-    "\\Waldbrand",
+    "\\Waldbrand\\bin",
+    "\\Waldbrand\\obj",
+    "\\Waldbrand\\obj\\Debug",
+    "\\Waldbrand\\obj\\Release",
     "\\Waldbrand\\Properties"
   ],
-  "SelectedNode": "\\Waldbrand\\Waldbrand.csproj",
+  "SelectedNode": "\\Waldbrand",
   "PreviewInSolutionExplorer": false
 }
